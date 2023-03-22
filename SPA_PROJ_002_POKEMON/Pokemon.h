@@ -7,10 +7,11 @@ class Pokemon
 {
 private:
 	string id, name, type1, type2;
-	int total, hp, atk, def, sp_atk, sp_def, speed, generation;
+	int total, atk, def, sp_atk, sp_def, speed, generation;
+	double hp;
 	bool legendary;
 
-	int random(double min, double max);
+	double random(double min, double max);
 
 public:
 	Pokemon();
@@ -21,7 +22,7 @@ public:
 	void set_type1(string type);
 	void set_type2(string type);
 	void set_total(int total);
-	void set_hp(int hp);
+	void set_hp(double hp);
 	void set_atk(int atk);
 	void set_def(int def);
 	void set_sp_atk(int sp_atk);
@@ -35,7 +36,7 @@ public:
 	string get_type1();
 	string get_type2();
 	int get_total();
-	int get_hp();
+	double get_hp();
 	int get_atk();
 	int get_def();
 	int get_sp_atk();

@@ -2,10 +2,11 @@
 #include <sstream>
 #include "Pokemon.h"
 #include <ctime>
+#include <Windows.h>
 
 using namespace std;
 
-int Pokemon::random(double min, double max)
+double Pokemon::random(double min, double max)
 {
 	srand(time(nullptr));
 	int min_ = 100 * min;
@@ -15,7 +16,7 @@ int Pokemon::random(double min, double max)
 
 	random /= 100;
 
-	return random;
+	return (double)random;
 }
 
 Pokemon::Pokemon()
@@ -70,7 +71,7 @@ void Pokemon::set_total(int total)
 	this->total = total;
 }
 
-void Pokemon::set_hp(int hp)
+void Pokemon::set_hp(double hp)
 {
 	this->hp = hp;
 }
@@ -135,7 +136,7 @@ int Pokemon::get_total()
 	return total;
 }
 
-int Pokemon::get_hp()
+double Pokemon::get_hp()
 {
 	return hp;
 }
@@ -183,23 +184,30 @@ void Pokemon::print_data()
 
 void Pokemon::fight(Pokemon p)
 {
-	int hp1 = this->hp;
-	int hp2 = p.hp;
+	double hp1 = this->hp;
+	double hp2 = p.hp;
 
+	cout << this->name << " HP: " << this->hp << endl;
+	cout << p.get_name() << " HP: " << p.get_hp() << endl;
+
+	double atk;
 	while (true) {
 
-		hp1 -= (p.get_atk() / (double)this->def) * random(0.75, 1.00);
-		cout << p.get_name() << " napada!\n" << this->name << " HP: " << this->hp << endl;
+		atk = (p.get_atk() / (double)this->def) * random(0.75, 1.00);
+		hp1 -= atk;
+		cout << p.get_name() << " napada!\nNapad = " << atk << "\n" << this->name << " HP: " << hp1 << endl;
+		Sleep(500); cout << endl;
 
-		hp2 -= (this->atk / (double)p.get_def()) * random(0.75, 1.00);
-		cout << this->name << " napada!\n" << p.get_name() << " HP: " << p.get_hp() << endl;
+		atk = (this->atk / (double)p.get_def()) * random(0.75, 1.00);
+		hp2 -= atk;
+		cout << this->name << " napada!\nNapad = " << atk << "\n" << p.get_name() << " HP: " << hp2 << endl;
+		Sleep(500); cout << endl;
 
-
-		if (hp1 <= 0) {
+		if (hp2 <= 0) {
 			cout << this->name << " pobjeduje!" << endl;
 			break;
 		}
-		else {
+		else if (hp1 <= 0){
 			cout << p.get_name() << " pobjeduje!" << endl;
 			break;
 		}

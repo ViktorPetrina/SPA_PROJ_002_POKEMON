@@ -141,18 +141,34 @@ void parse_file(vector<Pokemon>& vec) {
 	dat.close();
 }
 
-void pokemon_fight(vector<Pokemon>& pokemons) {
-	// ... provjeri jel radi random broj funkcija na metodi fight
+void print_pokemon_names(vector<Pokemon>& poks) {
+	for (int i = 0; i < poks.size(); i++) {
+		cout << i << ") " << poks[i].get_name() << endl;
+	}
+}
+
+void pokemon_fight(vector<Pokemon>& poks) {
+
+	cout << "Odaberite pokemona za borbu: ";
+	print_pokemon_names(poks);
+
+	int c1, c2;
+	cout << "\n----- Izbor: "; cin >> c1;
+	cout << "\nIzaberite protivnika: ";
+	print_pokemon_names(poks);
+	cout << "\n----- Izbor: "; cin >> c2;
+
+	poks[c1].fight(poks[c2]);
 }
 
 void main_menu() {
 	
 	int choice;
-	bool exit;
+	bool dalje;
 	vector<Pokemon> pokemons;
 
 	do {
-		cout << "1) Unos putanje\n2) Unos podataka iz datoteke\n3) Borba pokemona\nIzbor: ";
+		cout << "\n\t---------- 1) Unos putanje\n\t---------- 2) Unos podataka iz datoteke\n\t---------- 3) Borba pokemona\n\t---------- Izbor: ";
 		cin >> choice; cin.ignore();
 
 		switch (choice)
@@ -184,9 +200,9 @@ void main_menu() {
 			break;
 		}
 
-		cout << "\nZelite li zavrsiti? (1/da, 0/ne): ";
-		cin >> exit;
-	} while (!exit);
+		cout << "\nZelite li nastaviti? (1/da, 0/ne): ";
+		cin >> dalje;
+	} while (dalje);
 }
 
 int main() {
