@@ -1,0 +1,8 @@
+﻿  Pokemon.cpp
+C:\Users\Ryzen 5 1600\Desktop\All stuff\FAKS!\SEMSETAR 2\STRUKTURE PODATAKA I ALGORITMI\zadaci za vjezbu\repos\Zadaci_za_vjezbu01\SPA_PROJ_002_POKEMON\Pokemon.cpp(10,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Ryzen 5 1600\Desktop\All stuff\FAKS!\SEMSETAR 2\STRUKTURE PODATAKA I ALGORITMI\zadaci za vjezbu\repos\Zadaci_za_vjezbu01\SPA_PROJ_002_POKEMON\Pokemon.cpp(11,11): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Ryzen 5 1600\Desktop\All stuff\FAKS!\SEMSETAR 2\STRUKTURE PODATAKA I ALGORITMI\zadaci za vjezbu\repos\Zadaci_za_vjezbu01\SPA_PROJ_002_POKEMON\Pokemon.cpp(12,11): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Ryzen 5 1600\Desktop\All stuff\FAKS!\SEMSETAR 2\STRUKTURE PODATAKA I ALGORITMI\zadaci za vjezbu\repos\Zadaci_za_vjezbu01\SPA_PROJ_002_POKEMON\Pokemon.cpp(18,9): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+C:\Users\Ryzen 5 1600\Desktop\All stuff\FAKS!\SEMSETAR 2\STRUKTURE PODATAKA I ALGORITMI\zadaci za vjezbu\repos\Zadaci_za_vjezbu01\SPA_PROJ_002_POKEMON\Pokemon.cpp(191,44): warning C4244: '-=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Ryzen 5 1600\Desktop\All stuff\FAKS!\SEMSETAR 2\STRUKTURE PODATAKA I ALGORITMI\zadaci za vjezbu\repos\Zadaci_za_vjezbu01\SPA_PROJ_002_POKEMON\Pokemon.cpp(194,44): warning C4244: '-=': conversion from 'double' to 'int', possible loss of data
+  SPA_PROJ_002_POKEMON.vcxproj -> C:\Users\Ryzen 5 1600\Desktop\All stuff\FAKS!\SEMSETAR 2\STRUKTURE PODATAKA I ALGORITMI\zadaci za vjezbu\repos\Zadaci_za_vjezbu01\x64\Debug\SPA_PROJ_002_POKEMON.exe
