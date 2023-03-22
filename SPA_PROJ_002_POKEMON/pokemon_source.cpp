@@ -3,6 +3,7 @@
 #include <sstream>
 #include <vector>
 #include <chrono>
+#include <algorithm>
 #include "Pokemon.h"
 
 using namespace std;
@@ -161,6 +162,100 @@ void pokemon_fight(vector<Pokemon>& poks) {
 	poks[c1].fight(poks[c2]);
 }
 
+void write_in_same_order(vector<string>& lines) {
+	ofstream dat("novi_pokemoni_popis.csv");
+	if (!dat) throw exception("Greska kod pisanja u novu datoteku!");
+	
+	for (int i = 0; i < lines.size(); i++) {
+		dat << lines[i] << endl;
+	}
+
+	dat.close();
+}
+
+void write_in_reversed_order(vector<string>& lines) {
+	vector<string> lines_r(lines.rbegin(), lines.rend());
+	ofstream dat("novi_pokemoni_popis.csv");
+	if (!dat) throw exception("Greska kod pisanja u novu datoteku!");
+
+	for (int i = 0; i < lines.size(); i++) {
+		dat << lines_r[i] << endl;
+	}
+
+	dat.close();
+}
+
+void create_file() {
+	int choice;
+	cout << "Kopiraj datoteku u \n1) Istom redosljedu\nili\n2) Obrnutom redosljedu\nIzbor: ";
+	cin >> choice;
+
+	ifstream read("pokemoni_popis.csv");
+	if (!read) {
+		throw exception("Greska kod citanja datoteke!");
+	}
+
+	string line;
+	vector<string> lines;
+	while (getline(read, line)) {
+		lines.push_back(line);
+	}
+	read.close();
+
+	switch (choice) {
+	case 1:
+		try {
+			write_in_same_order(lines);
+		}
+		catch (exception& er) {
+			cout << er.what() << endl;
+		}
+		break;
+
+	case 2:
+		write_in_reversed_order(lines);
+		break;
+
+	default:
+		throw exception("Invalid choice!");
+	}
+}
+
+void multiply_hp(Pokemon& p) {
+	int hp = p.get_hp();
+	hp *= 1.5;
+	p.set_hp(hp);
+}
+
+void print_vector(vector<Pokemon> p) {
+	for (int i = 0; i < p.size(); i++) {
+		cout << p[i].get_name() << endl;
+	}
+}
+
+void poison_pokemon_processing(vector<Pokemon>& p) {
+	vector<Pokemon> p_pokemons;
+
+	cout << "Procesing pokemons..." << endl;
+	for (int i = 0; i < p.size(); i++) {
+		if (p[i].get_type1() == "Poison") {
+			p_pokemons.push_back(p[i]);
+		}
+	}
+
+	for (int i = 0; i < p_pokemons.size(); i++) {
+		if (p_pokemons[i].get_total() < 300) {
+			p_pokemons.erase(p_pokemons.begin() + i);
+		}
+	}
+	
+	for_each(p_pokemons.begin(), p_pokemons.end(), multiply_hp);
+	vector<Pokemon>reversed(p_pokemons.rbegin(), p_pokemons.rend());
+	p_pokemons = reversed;
+
+	print_vector(p_pokemons);
+}
+
 void main_menu() {
 	
 	int choice;
@@ -168,7 +263,8 @@ void main_menu() {
 	vector<Pokemon> pokemons;
 
 	do {
-		cout << "\n\t---------- 1) Unos putanje\n\t---------- 2) Unos podataka iz datoteke\n\t---------- 3) Borba pokemona\n\t---------- Izbor: ";
+		cout << "\n\t---------- 1) Unos putanje\n\t---------- 2) Unos podataka iz datoteke\n\t---------- 3) Borba pokemona" << 
+				"\n\t---------- 4) Kopiranje datoteke\n\t---------- 5) Obrada otrovnih pokemona\n\t---------- Izbor: ";
 		cin >> choice; cin.ignore();
 
 		switch (choice)
@@ -193,6 +289,19 @@ void main_menu() {
 
 		case 3:
 			pokemon_fight(pokemons);
+			break;
+
+		case 4:
+			try {
+				create_file();
+			}
+			catch (exception& err) {
+				cout << err.what() << endl;
+			}
+			break;
+
+		case 5:
+			poison_pokemon_processing(pokemons);
 			break;
 
 		default:
